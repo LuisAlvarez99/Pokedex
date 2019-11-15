@@ -1,0 +1,46 @@
+body {
+  background-image: radial-gradient(#242323 ,#404040);
+  background-size: cover;
+  color: #eee;
+  display: grid;
+  grid-template: repeat(3, 33%) / repeat(4, 25%);
+  grid-template-areas: "up up . side" "dex dex . side" ". . . side";
+  margin: 0;
+  bottom: 0;
+}
+
+.header {
+  grid-area: up;
+  display: grid;
+  grid-template: 100% / repeat(3,15%);
+}
+
+.header #left-pic {
+  width: 80px;
+  height: auto;
+  float: right;
+}
+
+.header #right-pic {
+  width: 80px;
+  height: auto;
+}
+section {
+  grid-area: dex;
+}
+section div{
+  display: grid;
+  grid-template: auto / 80% 20%;
+  float: left;
+}
+
+section img {
+  width: 80px;
+  height: auto;
+}
+
+
+aside {
+  grid-area: side;
+  float: right;
+}
