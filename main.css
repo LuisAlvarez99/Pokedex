@@ -4,9 +4,9 @@ body {
   background-size: cover;
   color: #eee;
   display: grid;
-  grid-template: 15vh 42vh 42vh / repeat(4, 25vw);
-  grid-template-areas: ". up . side" "dex . . side" ". . . side";
-  overflow: scroll  ;
+  grid-template: 15vh 42vh 12vh 30vh / repeat(4, 25vw);
+  grid-template-areas: ". up . side" "dex . . side" "dex . . side" ". . . side";
+  overflow: hidden;
 }
 
 .header {
@@ -29,8 +29,9 @@ body {
 section {
   grid-area: dex;
   background-color: grey;
-  border-top-right-radius: 15%;
-  border-bottom-right-radius: 15%;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
+  padding-right: 5%
 }
 
 section h1 {
@@ -64,5 +65,6 @@ aside {
 }
 
 aside #pkmn-img {
-  height: 10%;
+  width: 30%;
+  height: auto;
 }
