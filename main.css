@@ -1,46 +1,68 @@
 body {
+  margin: 0;
   background-image: radial-gradient(#242323 ,#404040);
   background-size: cover;
   color: #eee;
   display: grid;
-  grid-template: repeat(3, 33%) / repeat(4, 25%);
-  grid-template-areas: "up up . side" "dex dex . side" ". . . side";
-  margin: 0;
-  bottom: 0;
+  grid-template: 15vh 42vh 42vh / repeat(4, 25vw);
+  grid-template-areas: ". up . side" "dex . . side" ". . . side";
+  overflow: scroll  ;
 }
 
 .header {
   grid-area: up;
   display: grid;
-  grid-template: 100% / repeat(3,15%);
+  grid-template: 100% / 20% 60% 20%;
+  font-size: 14px;
 }
 
 .header #left-pic {
-  width: 80px;
-  height: auto;
-  float: right;
+  width: 100%;
+  padding-right: 5%
+
 }
 
 .header #right-pic {
-  width: 80px;
-  height: auto;
+  width: 100%;
 }
+
 section {
   grid-area: dex;
+  background-color: grey;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
 }
-section div{
+
+section h1 {
+  margin-top: 0;
+}
+section #team-container{
   display: grid;
-  grid-template: auto / 80% 20%;
+  grid-template: auto / 100% ;
+  grid-row-gap: 4%;
+  justify-items: center;
+}
+
+section h3 {
   float: left;
+  margin: 0;
+  padding-top: 4%;
+  padding-left: 4%;
+  font-size: 35px;
 }
 
 section img {
-  width: 80px;
+  width: 20%;
   height: auto;
+  float: right;
 }
 
 
 aside {
   grid-area: side;
   float: right;
+}
+
+aside #pkmn-img {
+  height: 10%;
 }
