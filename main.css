@@ -65,16 +65,32 @@ main img {
 }
 
 section {
+  background-color: #909090;
   grid-area: sec;
-  overflow-y: scroll;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
 }
 
-summary { 
+section img {
+  width: 50%;
+  height: auto;
+
+}
+
+section #move-list {
+  display: grid;
+  grid-template: repeat(2, 25%) / repeat(2, 25%);
+}
+
+summary {
+  background-color: #959595;
   grid-area: sum;
-  overflow-y: scroll;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
 }
 
 aside {
+  background-color: red;
   grid-area: side;
   float: right;
 }
