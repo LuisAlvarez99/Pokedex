@@ -4,8 +4,8 @@ body {
   background-size: cover;
   color: #eee;
   display: grid;
-  grid-template: 15vh 42vh 12vh 30vh / repeat(4, 25vw);
-  grid-template-areas: ". up . side" "dex sec sum side" "dex sec sum side" ". . . side";
+  grid-template: 15vh 14vh 14vh 14vh 14vh 29vh / repeat(4, 25vw);
+  grid-template-areas: ". up . side" "dex sec sum side" "dex sec sum side" "dex sec sum side" "dex sec sum side" ". . . side";
   overflow: hidden;
 }
 
@@ -28,6 +28,7 @@ body {
 }
 
 main {
+  z-index: 2;
   grid-area: dex;
   background-color: grey;
   border-top-right-radius: 5%;
@@ -64,7 +65,24 @@ main img {
   float: right;
 }
 
+@keyframes pullOut {
+  0%{
+    transform: translate(-100%);
+  }
+  100% {
+    transform: translate(0);
+    display: block;
+  }
+}
+
 section {
+  display: none;
+  box-shadow: 5px 0px 10px inset red;
+  margin-top: 8%;
+  margin-bottom: 8%;
+  padding-left: 10%;
+  z-index: 1;
+  animation: .5s ease-in pullOut;
   background-color: #909090;
   grid-area: sec;
   border-top-right-radius: 5%;
@@ -78,24 +96,90 @@ section img {
 }
 
 section #move-list {
+  cursor: pointer;
+  padding-left: 5%;
+  padding-top: 12%;
   display: grid;
-  grid-template: repeat(2, 25%) / repeat(2, 25%);
+  grid-template: repeat(2, 50%) / repeat(2, 50%);
+}
+
+section #move-list p:hover {
+  transform: scale(1.2);
 }
 
 summary {
+  z-index: 0;
+  display: none;
+  margin-top: 58%;
+  margin-bottom: 15%;
+  animation: .5s ease-in pullOut;
   background-color: #959595;
   grid-area: sum;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
 }
 
-aside {
+.pkmn-search {
   background-color: red;
   grid-area: side;
   float: right;
+  padding: 40px;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
 }
-
+/*
 aside #pkmn-img {
   width: 30%;
   height: auto;
+} */
+
+#pkmn-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 20px;
+    padding-inline-start: 0;
+}
+
+.card {
+    list-style: none;
+    padding: 40px;
+    color: #222;
+  text-align: center;
+}
+
+.card:hover {
+    animation: bounce 0.5s linear;
+}
+
+.card-title {
+    text-transform: capitalize;
+    margin-bottom: 0px;
+    font-size: 32px;
+    font-weight: normal;
+}
+.card-subtitle {
+    margin-top: 5px;
+    color: #666;
+    font-weight: lighter;
+}
+
+.card-image {
+    height: 180px;
+}
+
+@keyframes bounce {
+    20% {
+        transform: translateY(-6px);
+    }
+    40% {
+        transform: translateY(0px);
+    }
+
+    80% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
