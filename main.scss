@@ -4,7 +4,7 @@ body {
   background-size: cover;
   color: #eee;
   display: grid;
-  grid-template: 15vh 14vh 14vh 14vh 14vh 29vh/repeat(4, 25vw);
+  grid-template: 15vh 14vh 14vh 14vh 14vh (29vh / repeat(4, 25vw));
   grid-template-areas: ". up . side" "dex . . side" "dex . . side" "dex sec . side" "dex sec sum side" "dex sec sum side";
   overflow: hidden;
 }
@@ -12,16 +12,18 @@ body {
 .header {
   grid-area: up;
   display: grid;
-  grid-template: 100%/20% 60% 20%;
+  grid-template: 100% / 20% 60% 20%;
   font-size: 14px;
   text-align: center;
-}
-.header #left-pic {
-  width: 100%;
-  padding-right: 5%;
-}
-.header #right-pic {
-  width: 100%;
+
+  #left-pic {
+    width: 100%;
+    padding-right: 5%;
+  }
+
+  #right-pic {
+    width: 100%;
+  }
 }
 
 main {
@@ -31,47 +33,55 @@ main {
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
   padding-right: 12%;
-}
-main button {
-  float: right;
-}
-main h1 {
-  float: left;
-  margin-top: 0;
-}
-main #team-container {
-  display: grid;
-  margin-top: 20%;
-  overflow-y: scroll;
-  grid-template: repeat(auto, 20%)/100%;
-  grid-row-gap: 1%;
-  justify-items: center;
-}
-main span:hover {
-  transform: scale(1.1);
-}
-main h3 {
-  float: left;
-  margin: 0;
-  padding-top: 4%;
-  padding-left: 14%;
-  font-size: 35px;
-}
-main img {
-  width: 18%;
-  height: auto;
-  float: right;
+
+  button {
+    float: right;
+  }
+
+  h1 {
+    float: left;
+    margin-top: 0;
+  }
+
+  #team-container {
+    display: grid;
+    margin-top: 20%;
+    overflow-y: scroll;
+    grid-template: repeat(auto, 20%) / 100%;
+    grid-row-gap: 1%;
+    justify-items: center;
+  }
+
+  span:hover {
+    transform: scale(1.1);
+  }
+
+  h3 {
+    float: left;
+    margin: 0;
+    padding-top: 4%;
+    padding-left: 14%;
+    font-size: 35px;
+  }
+
+  img {
+    width: 18%;
+    height: auto;
+    float: right;
+  }
 }
 
 @keyframes pullOut {
   0% {
     transform: translate(-100%);
   }
+
   100% {
     transform: translate(0);
     display: block;
   }
 }
+
 section {
   display: none;
   box-shadow: 5px 0px 10px inset red;
@@ -79,25 +89,28 @@ section {
   margin-bottom: 8%;
   padding-left: 10%;
   z-index: 1;
-  animation: 0.5s ease-in pullOut;
+  animation: .5s ease-in pullOut;
   background-color: #909090;
   grid-area: sec;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
-}
-section img {
-  width: 50%;
-  height: auto;
-}
-section #move-list {
-  cursor: pointer;
-  padding-left: 5%;
-  padding-top: 12%;
-  display: grid;
-  grid-template: repeat(2, 50%)/repeat(2, 50%);
-}
-section #move-list p:hover {
-  transform: scale(1.2);
+
+  img {
+    width: 50%;
+    height: auto;
+  }
+
+  #move-list {
+    cursor: pointer;
+    padding-left: 5%;
+    padding-top: 12%;
+    display: grid;
+    grid-template: repeat(2, 50%) / repeat(2, 50%);
+
+    p:hover {
+      transform: scale(1.2);
+    }
+  }
 }
 
 summary {
@@ -105,7 +118,7 @@ summary {
   display: none;
   margin-top: 58%;
   margin-bottom: 15%;
-  animation: 0.5s ease-in pullOut;
+  animation: .5s ease-in pullOut;
   background-color: #959595;
   grid-area: sum;
   border-top-right-radius: 5%;
@@ -128,5 +141,3 @@ summary {
   grid-gap: 20px;
   padding-inline-start: 0;
 }
-
-/*# sourceMappingURL=main.css.map */

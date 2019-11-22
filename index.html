@@ -13,29 +13,10 @@
       <img src="https://media.giphy.com/media/qSrK4HvZyLMJi/giphy.gif" id="right-pic">
     </div>
 
-    <main id="main">
+    <main>
       <h1>Your Teams</h1>
-      <div id="team-container">
-        <span class="team-member">
-          <h3>member name</h3>
-          <img src="https://forums.bulbagarden.net/data/avatars/o/109/109363.jpg?1559949552" alt="">
-        </span>
-
-        <span class="team-member">
-          <h3>member name</h3>
-          <img src="https://forums.bulbagarden.net/data/avatars/o/109/109363.jpg?1559949552" alt="">
-        </span>
-
-        <span class="team-member">
-          <h3>member name</h3>
-          <img src="https://forums.bulbagarden.net/data/avatars/o/109/109363.jpg?1559949552" alt="">
-        </span>
-
-        <span class="team-member">
-          <h3>member name</h3>
-          <img src="https://forums.bulbagarden.net/data/avatars/o/109/109363.jpg?1559949552" alt="">
-        </span>
-      </div>
+      <button type="button" id="team-btn">add member</button>
+      <div id="team-container"></div>
     </main>
 
     <section id="section">
@@ -49,15 +30,16 @@
       </div>
     </section>
 
-    <summary id="summary">
+    <summary id="move-sum">
       <p>heatwave is a fire type move and does 80 fire dmg it is a magical attack and it cost 5pp</p>
     </summary>
 
 
     <aside class="pkmn-search">
-    <form>
-      <input type="text" id="pkmn-select" placeholder="Enter pokemon number">
-    </form>
+      <form id="search-form">
+        <input type="text" id="search-box" name="search-box" value="">
+        <input type="submit" name="" value="click here">
+      </form>
     <ol id="pkmn-list"></ol>
     </aside>
 

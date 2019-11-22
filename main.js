@@ -1,60 +1,77 @@
-const pkmnList = document.getElementById('pkmn-list')
-
 let thing = document.getElementById('section')
-
+let team = document.getElementById('team-container')
 let player = document.getElementsByClassName('team-member')
+let btn = document.getElementById('team-btn')
 
-for (var i = 0; i < player.length; i++) {
-    player[i].addEventListener('click', () => {
-      thing.style.display = 'block'
-    });
+// link to trainer sprites for men (http://www.pokestadium.com/assets/img/tools/trainercard/trainers/male/177.png)
+// link to trainer sprites for women (http://www.pokestadium.com/assets/img/tools/trainercard/trainers/female/109.png)
+
+btn.addEventListener('click', () => {
+  let player = prompt('enter your name')
+  let gen = prompt('male of female?')
+  let x = prompt('enter trainer number(1-109)')
+  let span = document.createElement('span')
+  span.className = 'team-member'
+  span.innerHTML = `<h3>${player}</h3>
+                    <img src="http://www.pokestadium.com/assets/img/tools/trainercard/trainers/${gen}/${x}.png" alt="" width='33%' height='auto'>
+  `
+  team.appendChild(span)
+})
+
+
+
+let form = document.getElementById('search-form')
+form.addEventListener('submit', (event) => {
+  let val = document.getElementById('search-box').value
+  event.preventDefault()
+  queryPokemonAPI(val)
+})
+
+
+queryPokemonAPI = async (val) => {
+  let req =  await fetch(`https://pokeapi.co/api/v2/pokemon/${val}`)
+  let data =  await req.json()
+
+
+
+  let poke = {
+    link: data.sprites.front_default,
+    name: data.name,
+    stats: {
+      hp: data.stats[5].base_stat,
+      atk: data.stats[4].base_stat,
+      def: data.stats[3].base_stat
+    }
+  }
+
+  for(let i in data.abilities) {
+    let aName = data.abilities[i].ability.name
+    poke.abil += aName
+    console.log(aName)
+  }
+  drawPkmn(poke)
 }
 
 
-let moveList = document.getElementById('move-list')
-
-let sum = document.getElementById('summary')
-
-for (var i = 0; i < moveList.length; i++) {
-    moveList[i].addEventListener('click', () => {
-      summary.style.display = 'block'
-    });
+drawPkmn = (poke) => {
+  let ol = document.getElementById('pkmn-list')
+  let div = document.createElement('div')
+  ol.appendChild(div)
+  div.innerHTML= `<img src = "${poke.link}" width="30%" height="auto">
+                  <div class="stat-track">
+                  <p>Pokemon: ${poke.name}
+                  <p> Pokemon HP: ${poke.stats.hp}</p>
+                  <p> Pokemon ATK: ${poke.stats.atk}</p>
+                  <p> Pokemon DEF: ${poke.stats.def}</p>
+                  <p> Pokemon Abilities: ${poke.abil}</p>
+                  </div>`
 }
-// const pkmnSelect = document.getElementById('pkmn-select').value
 
-
-//this is a function that can be a part of my class for pokemon
-// const fetchPokemon = () => {
-//     const promises = []
-//     for (let i = 1; i <= 802; i++) {
-//         const url = `https://pokeapi.co/api/v2/pokemon/${i}`
-//         promises.push(fetch(url).then((res) => res.json()))
-//     }
-//     Promise.all(promises).then((results) => {
-//         const pokemon = results.map((result) => ({
-//             name: result.name,
-//             image: result.sprites['front_default'],
-//             type: result.types.map((type) => type.type.name).join(', '),
-//             id: result.id
-//         }))
-//         displayPokemon(pokemon)
-//     })
-// }
-//
-// const displayPokemon = (pokemon) => {
-//     console.log(pokemon)
-//     const pokemonHTMLString = pokemon
-//         .map(
-//             (pokeman) => `
-//         <li class="card">
-//             <img class="card-image" src="${pokeman.image}"/>
-//             <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
-//             <p class="card-subtitle">Type: ${pokeman.type}</p>
-//         </li>
-//     `
-//         )
-//         .join('')
-//     pkmnList.innerHTML = pokemonHTMLString
-// }
-//
-// fetchPokemon()
+class Trainer {
+  constructor() {
+    this.pokemon = []
+  }
+  addPokemon() {
+    this.pokemon.push()
+  }
+}
