@@ -5,7 +5,7 @@ body {
   color: #eee;
   display: grid;
   grid-template: 15vh 14vh 14vh 14vh 14vh (29vh / repeat(4, 25vw));
-  grid-template-areas: ". up . side" "dex . . side" "dex . . side" "dex sec . side" "dex sec sum side" "dex sec sum side";
+  grid-template-areas: ". up . side" "dex . . side" "dex . . side" "dex sec . side" "dex sec sum side" "dex sec sum .";
   overflow: hidden;
 }
 
@@ -114,8 +114,8 @@ section {
 }
 
 summary {
-  z-index: 0;
   display: none;
+  z-index: 0;
   margin-top: 58%;
   margin-bottom: 15%;
   animation: .5s ease-in pullOut;
