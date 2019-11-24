@@ -5,7 +5,7 @@ body {
   color: #eee;
   display: grid;
   grid-template: 15vh 14vh 14vh 14vh 14vh (29vh / repeat(4, 25vw));
-  grid-template-areas: ". up . side" "dex . . side" "dex . . side" "dex sec . side" "dex sec sum side" "dex sec sum .";
+  grid-template-areas: ". up . side" "dex . tog side" "dex . . side" "dex sec . side" "dex sec sum side" "dex sec sum .";
   overflow: hidden;
 }
 
@@ -140,4 +140,36 @@ summary {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 20px;
   padding-inline-start: 0;
+}
+
+.collapse-container {
+  grid-area: tog;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.lbl-toggle {
+  display: block;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: 0.25s ease-out;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: .25s ease;
+
+  .content-inner {
+    float: right;
+    background: black;
+    padding: 0 8%;
+  }
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 350px;
 }

@@ -28,6 +28,7 @@ btn.addEventListener('click', () => {
                     <img src="http://www.pokestadium.com/assets/img/tools/trainercard/trainers/${gen}/${x}.png" alt="" width='33%' height='auto'>
                     `
   team.appendChild(span)
+  let trainer = new Trainer(`${player}`)
 })
 
 
@@ -41,36 +42,37 @@ form.addEventListener('submit', (event) => {
 })
 
 
-queryPokemonAPI = async (val) => {
-  let req =  await fetch(`https://pokeapi.co/api/v2/pokemon/${val}`)
-  let data =  await req.json()
+  queryPokemonAPI = async (val) => {
+    let req =  await fetch(`https://pokeapi.co/api/v2/pokemon/${val}`)
+    let data =  await req.json()
 
-  let poke = {
-    link: data.sprites.front_default,
-    name: data.name,
-    stats: {
-      hp: data.stats[5].base_stat,
-      atk: data.stats[4].base_stat,
-      def: data.stats[3].base_stat
+    let poke = {
+      link: data.sprites.front_default,
+      name: data.name,
+      stats: {
+        hp: data.stats[5].base_stat,
+        atk: data.stats[4].base_stat,
+        def: data.stats[3].base_stat
+      }
     }
-  }
 
-  for(let i in data.abilities) {
-    let aName = data.abilities[i].ability.name
-    poke.abil = aName
-    console.log(aName)
+    for(let i in data.abilities) {
+      let aName = data.abilities[i].ability.name
+      poke.abil = aName
+      console.log(aName)
+    }
+    drawPkmn(poke)
   }
-  drawPkmn(poke)
-}
 
 
 drawPkmn = (poke) => {
   let ol = document.getElementById('pkmn-list')
   let div = document.createElement('div')
+  div.setAttribute('class', 'poke-card')
   ol.appendChild(div)
-  div.innerHTML= `<img src = "${poke.link}" width="30%" height="auto">
+  div.innerHTML= `<p>Pokemon: ${poke.name}</p>
+                  <img src = "${poke.link}" width="30%" height="auto">
                   <div class="stat-track">
-                  <p>Pokemon: ${poke.name}
                   <p> Pokemon HP: ${poke.stats.hp}</p>
                   <p> Pokemon ATK: ${poke.stats.atk}</p>
                   <p> Pokemon DEF: ${poke.stats.def}</p>
@@ -79,11 +81,12 @@ drawPkmn = (poke) => {
 }
 
 class Trainer {
-  constructor() {
-    this.pokemon = []
+  constructor(name) {
+    this.name = name
+    this.team = []
   }
   addPokemon() {
-    this.pokemon.push()
+
   }
 }
 
@@ -91,4 +94,5 @@ class Pokemon {
   constructor() {
 
   }
+
 }
