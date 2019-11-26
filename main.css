@@ -1,4 +1,5 @@
 body {
+  font-family: "Shadows Into Light", cursive;
   margin: 0;
   background-image: radial-gradient(#242323, #404040);
   background-size: cover;
@@ -25,42 +26,43 @@ body {
 }
 
 main {
+  display: grid;
+  grid-template: 10% 90%/85% 15%;
+  grid-template-areas: ". btn" "player team";
   z-index: 2;
   grid-area: dex;
   background-color: grey;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
-  padding-right: 12%;
+  padding-right: 1.9277%;
+  padding-top: 1.9277%;
 }
-main button {
-  float: right;
+main #team-btn {
+  width: 80%;
+  grid-area: btn;
 }
-main h1 {
-  float: left;
-  margin-top: 0;
+main .team-member {
+  grid-area: player;
+  overflow-y: hidden;
 }
-main #team-container {
-  display: grid;
-  margin-top: 20%;
-  overflow-y: scroll;
-  grid-template: repeat(auto, 20%)/100%;
-  grid-row-gap: 1%;
-  justify-items: center;
-}
-main span:hover {
-  transform: scale(1.1);
-}
-main h3 {
-  float: left;
-  margin: 0;
-  padding-top: 4%;
-  padding-left: 14%;
-  font-size: 35px;
-}
-main img {
-  width: 18%;
+main #trainer-pic {
+  width: 75%;
   height: auto;
-  float: right;
+  padding-top: 10%;
+  padding-left: 8%;
+}
+main #trainer-name {
+  margin: 0;
+  font-size: 2em;
+  text-align: center;
+}
+main #poke-btn {
+  padding-top: 385%;
+  font-size: 1.5em;
+  grid-area: team;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin: 0;
 }
 
 @keyframes pullOut {
@@ -69,7 +71,6 @@ main img {
   }
   100% {
     transform: translate(0);
-    display: block;
   }
 }
 section {
@@ -84,20 +85,32 @@ section {
   grid-area: sec;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
+  grid-template: 10% 30% 30% 30%/50% 50%;
+  grid-template-areas: "adpk remopk" ". ." ". ." ". .";
 }
-section img {
-  width: 50%;
-  height: auto;
+section #add-pkmn {
+  grid-area: adpk;
+  width: 30%;
 }
-section #move-list {
-  cursor: pointer;
-  padding-left: 5%;
-  padding-top: 12%;
+section #remove-pkmn {
+  grid-area: remopk;
+  width: 30%;
+}
+section .poke-card {
   display: grid;
-  grid-template: repeat(2, 50%)/repeat(2, 50%);
+  grid-template: 30% 20%/50% 50%;
+  grid-template-areas: "pho nam" "pho hel";
 }
-section #move-list p:hover {
-  transform: scale(1.2);
+section .poke-card img {
+  grid-area: pho;
+  width: 100%;
+}
+section .poke-card h3 {
+  grid-area: nam;
+  margin: 0;
+}
+section .poke-card p {
+  grid-area: hel;
 }
 
 summary {

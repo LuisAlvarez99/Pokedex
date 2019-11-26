@@ -1,31 +1,59 @@
-let section = document.getElementById('section')
-let moveList = document.getElementById('move-list')
+let section = document.getElementById('poke-team')
+let plusPkmn = document.getElementById('add-pkmn')
+let minPkmn = document.getElementById('remove-pkmn')
 let summary = document.getElementById('move-sum')
 let team = document.getElementById('team-container')
-let player = document.getElementsByClassName('team-member')
-let btn = document.getElementById('team-btn')
+let pokemen = document.getElementById('poke-btn')
+
+
 
 // link to trainer sprites for men (http://www.pokestadium.com/assets/img/tools/trainercard/trainers/male/177.png)
 // link to trainer sprites for women (http://www.pokestadium.com/assets/img/tools/trainercard/trainers/female/109.png)
 
 function showDiv() {
-  section.style.display = 'block'
+  if(section.style.display == 'grid'){
+  section.style.display = 'none'
+} else {
+  section.style.display = 'grid'
 }
+}
+pokemen.setAttribute("onclick", "showDiv()")
 
 function showMoves() {
-  summary.style.display = 'block'
+  if(summary.style.display === 'block'){
+    summary.style.display = 'none'
+  } else {
+    summary.style.display = 'block'
+  }
 }
-section.setAttribute('onclick', 'showMoves()')
+minPkmn.style.opacity = '0'
 
+function pkmnTeam() {
+  if(trainer.team.length < 6) {
+  let val = prompt('Choose your pokemon')
+  pika.queryPokemonAPI(val)
+  setTimeout(function() {
+  let div = document.createElement('div')
+  div.setAttribute('class', 'poke-card')
+  section.appendChild(div)
+  div.innerHTML = `<img src="${pika.link}">
+                   <h3> ${pika.name}</h3>
+                   <p>${pika.hp}/${pika.hp}</p>`
+                 },800)
+}
+else{plusPkmn.style.opacity = '0'}
+}
+plusPkmn.setAttribute('onclick', 'pkmnTeam()')
+
+let btn = document.getElementById('team-btn')
 btn.addEventListener('click', () => {
   let player = prompt('What is your name?', 'Trainer ')
-  let gen = prompt('Select your gender', 'male or female')
+  let gen = prompt('Select your gender', 'male or female').toLowerCase()
   let x = prompt('Enter a trainer number 1-109', '44')
   let span = document.createElement('span')
-  span.setAttribute('onclick','showDiv()')
   span.className = 'team-member'
-  span.innerHTML = `<h3>${player}</h3>
-                    <img src="http://www.pokestadium.com/assets/img/tools/trainercard/trainers/${gen}/${x}.png" alt="" width='33%' height='auto'>
+  span.innerHTML = `<h3 id='trainer-name'>${player}</h3>
+                    <img src="http://www.pokestadium.com/assets/img/tools/trainercard/trainers/${gen}/${x}.png" alt="" width='28%' height='auto' id='trainer-pic'>
                     `
   team.appendChild(span)
 })
@@ -35,7 +63,7 @@ form.addEventListener('submit', (event) => {
   let val = document.getElementById('search-box').value
   event.preventDefault()
   pika.queryPokemonAPI(val)
-  setTimeout(function(){pika.drawPkmn()}, 100)
+  setTimeout(function(){pika.drawPkmn()}, 800)
 })
 
 class Pokemon {
@@ -60,7 +88,11 @@ class Pokemon {
       this.abil.push(aName)
       console.log(aName)
     }
-    console.log(data)
+    if(trainer.team.length < 6){
+    trainer.team.push(this)}
+    else {
+      alert("Team full")
+    }
   }
 
 
@@ -85,4 +117,13 @@ class Pokemon {
       this.name = name
       this.team = []
     }
+    all() {
+      return this.team
+    }
+    get(name) {
+      return this.team[name]
+    }
   }
+
+let pika = new Pokemon()
+let trainer = new Trainer()
